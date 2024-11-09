@@ -1,5 +1,6 @@
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // final kColorScheme = themedata.colorScheme;
 
@@ -24,100 +25,22 @@ final List<TabItem> tabItems = List.of([
   ),
 ]);
 
-class RepoDetailsScreen extends StatelessWidget {
+class RepoDetailsScreen extends ConsumerWidget {
   const RepoDetailsScreen({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'RepoScreen',
-            style:
-                TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-          ),
-          backgroundColor: const Color.fromARGB(255, 245, 244, 244),
+      appBar: AppBar(
+        title: const Text(
+          'Repositories',
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
-        body: const Center(
-          child: Text('I am the repo screen'),
+      ),
+      body: const Center(
+        child: Text(
+          'data',
         ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.withOpacity(0.2)),
-            color: Colors.black87,
-            borderRadius: BorderRadius.circular(24),
-            // Optional: add shadow
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black87,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: BottomNavigationBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  iconSize: 24,
-                  items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          color: Colors.white,
-                          Icons.folder,
-                        ),
-                        label: 'Repos'),
-                    BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.filter,
-                        color: Colors.white,
-                      ),
-                      label: 'Images',
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        )
-        // filter_sharp
-
-        // clipBehavior: Clip.antiAliasWithSaveLayer,
-        // clipper: CustomClipper(reclip: Lis),
-        // bottomNavigationBar: Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: ClipRect(
-        //     clipBehavior: Clip.hardEdge,
-        //     child: BottomNavigationBar(
-        //       backgroundColor: const Color.fromARGB(236, 0, 0, 0),
-        //       // landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
-        //       // elevation: 4,
-        //       iconSize: 24,
-        //       items: const [
-        //         BottomNavigationBarItem(
-        //             icon: Icon(
-        //               color: Colors.white,
-        //               Icons.folder,
-        //             ),
-        //             label: 'Repos'),
-        //         BottomNavigationBarItem(
-        //           icon: Icon(
-        //             Icons.filter,
-        //             color: Colors.white,
-        //           ),
-        //           label: 'Images',
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        );
+      ),
+    );
   }
 }
