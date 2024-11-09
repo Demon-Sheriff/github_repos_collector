@@ -33,7 +33,7 @@ class RepoDetailsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<Repository> repoList = [
       Repository(
-        title: 'Demon-Sheriff',
+        name: 'Demon-Sheriff',
         description:
             'I am doing something, I am gonna finish this project. No matter what !, I am done running away from devlopment, Okay will this one overflow because if not I will try my best to make it overflow ! Okay still did not overlfow let\'s do it again',
         imageURL:
@@ -43,6 +43,7 @@ class RepoDetailsScreen extends ConsumerWidget {
         comments: 4,
         rawURL: 'rawURL',
         size: 4,
+        language: 'javascript',
       ),
     ];
     return Scaffold(

@@ -1,8 +1,11 @@
+import 'package:flutter/services.dart';
+
 class Repository {
-  String title, imageURL, description, createdAt, lastUpdated, rawURL;
+  String name, imageURL, description, createdAt, lastUpdated, rawURL, language;
   int comments, size;
   Repository({
-    required this.title,
+    required this.name,
+    required this.language,
     required this.description,
     required this.imageURL,
     required this.createdAt,
