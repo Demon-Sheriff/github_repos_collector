@@ -1,6 +1,6 @@
 class Repository {
-  String title, imageURL, description, createdAt, lastUpdated;
-  int comments;
+  String title, imageURL, description, createdAt, lastUpdated, rawURL;
+  int comments, size;
   Repository({
     required this.title,
     required this.description,
@@ -8,5 +8,7 @@ class Repository {
     required this.createdAt,
     required this.lastUpdated,
     required this.comments,
+    required this.rawURL,
+    required this.size,
   });
 }
