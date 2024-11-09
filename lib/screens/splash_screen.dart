@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:github_repo_app/screens/Image_grid_screen.dart';
+import 'package:github_repo_app/screens/repo_details_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,6 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
 
@@ -39,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const ImageGridScreen(),
+          builder: (context) => const RepoDetailsScreen(),
         ),
       );
     });
