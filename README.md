@@ -2,6 +2,15 @@
 
 A new Flutter project.
 
+## Project Screen Snapshots/Clips
+
+#### Splash Screen
+
+
+https://github.com/user-attachments/assets/edaf79e7-c05b-4fc9-ba80-5b2bc75097d6
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
