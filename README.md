@@ -4,6 +4,8 @@ search repositories after fetching data from an API.
 
 ## Project Screen Snapshots/Clips
 
+### Clips
+
 #### Splash Screen
 
 
@@ -15,6 +17,13 @@ https://github.com/user-attachments/assets/edaf79e7-c05b-4fc9-ba80-5b2bc75097d6
 
 
 https://github.com/user-attachments/assets/5ce27eba-f723-4b77-9305-13b5a32c4a76
+
+### Images Gallery Screen
+
+
+
+
+https://github.com/user-attachments/assets/480cdc34-5f86-4fa9-bf9a-701c49d687fe
 
 
 
