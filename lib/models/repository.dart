@@ -96,6 +96,15 @@ class GistOwner {
   }
 }
 
+// gist with ownwer
+
+class GistWithOwner {
+  final Gist gist;
+  final GistOwner owner;
+
+  GistWithOwner({required this.gist, required this.owner});
+}
+
 // gist.dart
 class Gist {
   final String url;

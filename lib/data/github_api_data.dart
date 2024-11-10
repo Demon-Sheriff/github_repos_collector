@@ -28,7 +28,7 @@ class GistService {
     return jsonList.map((json) => Gist.fromJson(json)).toList();
   }
 
-  // Fetch a specific gist by ID
+  // fetch a specific gist by ID
   Future<Gist> getGistById(String gistId) async {
     final url = Uri.parse('$baseUrl/gists/$gistId');
     final response = await http.get(url, headers: _headers);

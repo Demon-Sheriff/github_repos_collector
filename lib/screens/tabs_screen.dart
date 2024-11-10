@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repo_app/data/github_api_data.dart';
+import 'package:github_repo_app/providers/gist_provider.dart';
 import 'package:github_repo_app/providers/navigation_bar_index.dart';
 import 'package:github_repo_app/screens/Image_grid_screen.dart';
 import 'package:github_repo_app/screens/repo_details_screen.dart';
@@ -9,7 +11,8 @@ class TabsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget bodyContent = const RepoDetailsScreen();
+
+    Widget bodyContent = RepoDetailsScreen(gistService: ref.watch(gistServiceProvider));
     if (ref.watch(bottommNavigationBarIndex) == 1) {
       bodyContent = const ImageGridScreen();
     }

@@ -1,10 +1,9 @@
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repo_app/data/github_api_data.dart';
 import 'package:github_repo_app/models/repository.dart';
 import 'package:github_repo_app/widgets/repo_card.dart';
-
-// final kColorScheme = themedata.colorScheme;
 
 final List<TabItem> tabItems = List.of([
   TabItem(
@@ -27,26 +26,91 @@ final List<TabItem> tabItems = List.of([
   ),
 ]);
 
-class RepoDetailsScreen extends ConsumerWidget {
-  const RepoDetailsScreen({super.key});
+class RepoDetailsScreen extends StatefulWidget {
+  final GistService gistService;
+  const RepoDetailsScreen({super.key, required this.gistService});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    List<Gist> repoList = [
-      Gist(
-        name: 'Demon-Sheriff',
-        description:
-            'I am doing something, I am gonna finish this project. No matter what !, I am done running away from devlopment, Okay will this one overflow because if not I will try my best to make it overflow ! Okay still did not overlfow let\'s do it again',
-        imageURL:
-            'https://i.pinimg.com/originals/4c/cf/da/4ccfdaf6092dc341376e6fdb8130d09d.jpg',
-        createdAt: '10 Nov 2024',
-        lastUpdated: '10 Nov 2024',
-        comments: 4,
-        rawURL: 'rawURL',
-        size: 4,
-        language: 'javascript',
-      ),
-    ];
-    List<GistOwner> owners = [];
+  State<RepoDetailsScreen> createState() => _RepoDetailsScreenState();
+}
+
+class _RepoDetailsScreenState extends State<RepoDetailsScreen> {
+  final List<Gist> _gists = [];
+  bool _isLoading = false;
+  bool _hasError = false;
+  String _errorMessage = '';
+  int _currentPage = 1;
+  final int _perPage = 30;
+  bool _hasMoreData = true;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadGists();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent * 0.8 &&
+        !_isLoading &&
+        _hasMoreData) {
+      _loadMoreGists();
+    }
+  }
+
+  Future<void> _loadGists() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _isLoading = true;
+      _hasError = false;
+      _errorMessage = '';
+    });
+
+    try {
+      final gists = await widget.gistService.getPublicGists(
+        perPage: _perPage,
+        page: _currentPage,
+      );
+
+      setState(() {
+        _gists.addAll(gists);
+        _hasMoreData = gists.length == _perPage;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _hasError = true;
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _loadMoreGists() async {
+    _currentPage++;
+    await _loadGists();
+  }
+
+  Future<void> _refreshGists() async {
+    setState(() {
+      _gists.clear();
+      _currentPage = 1;
+      _hasMoreData = true;
+    });
+    await _loadGists();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,16 +118,56 @@ class RepoDetailsScreen extends ConsumerWidget {
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView.builder(
-        itemCount: repoList.length,
+      body: _buildBody(),
+    );
+  }
+
+  Widget _buildBody() {
+    if (_hasError && _gists.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Error: $_errorMessage'),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _refreshGists,
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: _refreshGists,
+      child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _gists.length + (_hasMoreData ? 1 : 0),
         itemBuilder: (context, index) {
+          if (index == _gists.length) {
+            return _buildLoadingIndicator();
+          }
+
+          final gist = _gists[index];
           return RepoCard(
-            repository: repoList[index],
-            owner: owners[index],
-            title: 'Repository $index',
+            repository: gist,
+            owner: gist.owner,
+            title: 'Repository ${index + 1}',
           );
         },
       ),
     );
+  }
+
+  Widget _buildLoadingIndicator() {
+    return _isLoading
+        ? const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : const SizedBox.shrink();
   }
 }
