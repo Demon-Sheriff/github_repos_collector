@@ -1,6 +1,6 @@
-# github_repo_app
+# Github repository search
 
-A new Flutter project.
+search repositories after fetching data from an API.
 
 ## Project Screen Snapshots/Clips
 
@@ -10,10 +10,18 @@ A new Flutter project.
 https://github.com/user-attachments/assets/edaf79e7-c05b-4fc9-ba80-5b2bc75097d6
 
 
+### Repository Screen and Navigation Bar
+
+
+
+https://github.com/user-attachments/assets/5ce27eba-f723-4b77-9305-13b5a32c4a76
+
+
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
