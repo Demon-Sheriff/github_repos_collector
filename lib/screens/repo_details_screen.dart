@@ -31,8 +31,8 @@ class RepoDetailsScreen extends ConsumerWidget {
   const RepoDetailsScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Repository> repoList = [
-      Repository(
+    List<Gist> repoList = [
+      Gist(
         name: 'Demon-Sheriff',
         description:
             'I am doing something, I am gonna finish this project. No matter what !, I am done running away from devlopment, Okay will this one overflow because if not I will try my best to make it overflow ! Okay still did not overlfow let\'s do it again',
@@ -46,6 +46,7 @@ class RepoDetailsScreen extends ConsumerWidget {
         language: 'javascript',
       ),
     ];
+    List<GistOwner> owners = [];
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -58,6 +59,8 @@ class RepoDetailsScreen extends ConsumerWidget {
         itemBuilder: (context, index) {
           return RepoCard(
             repository: repoList[index],
+            owner: owners[index],
+            title: 'Repository $index',
           );
         },
       ),

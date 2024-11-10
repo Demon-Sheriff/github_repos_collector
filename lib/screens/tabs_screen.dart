@@ -31,8 +31,10 @@ class TabsScreen extends ConsumerWidget {
         backgroundColor: Colors.black,
         elevation: 0,
         iconSize: 24,
-        // selectedItemColor: Colors.white,
-        fixedColor: Colors.white,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white.withOpacity(.80),
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
