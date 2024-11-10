@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:github_repo_app/screens/image_grid_screen.dart';
-import 'package:github_repo_app/screens/repo_details_screen.dart';
 import 'package:github_repo_app/screens/tabs_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
 
-    // _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
 
     _controller.forward();
 

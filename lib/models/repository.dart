@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 
 // gist_file.dart
 class GistFile {
