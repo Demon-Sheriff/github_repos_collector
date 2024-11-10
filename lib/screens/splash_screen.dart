@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:github_repo_app/screens/Image_grid_screen.dart';
+import 'package:github_repo_app/screens/image_grid_screen.dart';
 import 'package:github_repo_app/screens/repo_details_screen.dart';
 import 'package:github_repo_app/screens/tabs_screen.dart';
 

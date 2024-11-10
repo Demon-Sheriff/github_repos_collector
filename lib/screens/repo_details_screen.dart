@@ -1,6 +1,5 @@
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_repo_app/data/github_api_data.dart';
 import 'package:github_repo_app/models/repository.dart';
 import 'package:github_repo_app/widgets/repo_card.dart';

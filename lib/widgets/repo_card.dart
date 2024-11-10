@@ -5,7 +5,11 @@ class RepoCard extends StatelessWidget {
   final Gist repository;
   final GistOwner owner;
   final String title;
-  const RepoCard({super.key, required this.repository, required this.owner, required this.title});
+  const RepoCard(
+      {super.key,
+      required this.repository,
+      required this.owner,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +78,7 @@ class RepoCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text(repository.createdAt),
+                    Text(repository.createdAt.substring(0, 10)),
                   ],
                 ),
                 const SizedBox(
@@ -105,7 +109,7 @@ class RepoCard extends StatelessWidget {
                           size: 34,
                           color: Color(0xFF6E7781),
                         ),
-                        if (repository.comments! > 0)
+                        if (repository.comments > 0)
                           Positioned(
                             right: -2,
                             bottom: 16,
@@ -152,7 +156,7 @@ class RepoCard extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      'Last Updated ${repository.updatedAt}',
+                      'Last Updated ${repository.updatedAt.substring(0, 10)}',
                     ),
                   ],
                 ),

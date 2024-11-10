@@ -12,7 +12,7 @@ void main() {
     overrides: [
       gistServiceProvider.overrideWith((ref) => GistService()),
     ],
-    child: App(),
+    child: const App(),
   ));
 }
 
